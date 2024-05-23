@@ -17,3 +17,10 @@ class SparseMatrix:
         
         
     def _read_from_file(self, file_path):
+        elements = defaultdict(int)
+        try:
+            with open(file_path, 'r') as file:
+                lines = file.readlines()
+                num_rows = int(lines[0].split('=')[1].strip())
+                num_cols = int(lines[1].split('='))
+        except Exception as e:
