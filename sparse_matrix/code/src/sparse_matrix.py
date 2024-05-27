@@ -10,7 +10,8 @@ class SparseMatrix:
         self.rows = 0
         self.cols = 0
         self.matrix = defaultdict(int)
-        self.read_matrix(matrixFilePath)
+        if matrixFilePath:
+            self.read_matrix(matrixFilePath)
 
     def read_matrix(self, matrixFilePath):
         try:
@@ -19,9 +20,9 @@ class SparseMatrix:
                 for line in lines:
                     line = line.strip()
                     if 'rows=' in line:
-                        self.rows = int(line.split('=')[1]).strip()
+                        self.rows = int(line.split('=')[1].strip())
                     elif 'cols=' in line:
-                        self.cols = int(line.split('=')[1]).strip()
+                        self.cols = int(line.split('=')[1].strip())
                     elif line:
                         if not (line.startswith('(') and line.endswith(')')):
                             raise ValueError("Input file has wrong format")
